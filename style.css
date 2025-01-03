@@ -1,0 +1,202 @@
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #eee;
+  background-color: #1a1d3a;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  margin: 0;
+}
+
+#lbm {
+  color: #dc2f55;
+}
+
+.form {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.input {
+  background-color: #303245;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.cut {
+  position: absolute;
+  left: 20px;
+  top: -20px;
+  width: 100px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #15172b;
+  transform: translateY(0);
+  transition: transform 200ms;
+ 
+}
+
+.cut-short {
+  width: 70px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.placeholder {
+  color: #65657b;
+  font-weight: 500;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #dc2f55;
+}
+
+.submit {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  outline: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
+/* TABS */
+
+.tabs {
+  max-width: 1024px;
+  margin: 0 auto;
+  column-count: 3;
+  column-gap: 0;
+}
+
+.tabs > input[name="tab"] {
+  display: none;
+}
+
+.tabs > label:first-of-type {
+  border-top-left-radius: 12px;
+}
+
+.tabs > label:last-of-type {
+  border-top-right-radius: 12px;
+}
+
+.tab-name {
+  display: block;
+  padding: 20px;
+  break-inside: avoid;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #eee;
+  background-color: #15172b;
+}
+
+.tabs-content {
+  column-span: all;
+  border-radius: 0 0 12px 12px;
+  background-color: #303245;
+}
+
+.tabs-content-item {
+  display: none;
+  padding: 20px;
+  column-count: 3;
+  column-gap: 30px;
+}
+
+.tabs-content-item [data-protein] {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+[name="tab"]:checked + label {
+  border-bottom: 3px solid #5ffbf1;
+}
+
+/* [data-tab="inactive"]:hover ~ .tabs/-content [data-tab-content="inactive"], */
+#inactive:checked ~ .tabs-content [data-tab-content="inactive"],
+/* [data-tab="cardio"]:hover ~ .tabs-content [data-tab-content="cardio"], */
+#cardio:checked ~ .tabs-content [data-tab-content="cardio"],
+/* [data-tab="strength"]:hover ~ .tabs-content [data-tab-content="strength"], */
+#strength:checked ~ .tabs-content [data-tab-content="strength"] {
+  display: block;
+}
+
+.span-all {
+  column-span: all;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.pl-20 {
+  padding-left: 20px;
+}

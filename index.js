@@ -1,25 +1,42 @@
 const formEl = document.getElementById('parameters');
 const lbmEl = document.getElementById('lbm');
-const proteinEls = {
-  inactive: document.querySelector('[data-protein="inactive"]'),
-  cardio: document.querySelector('[data-protein="cardio"]'),
-  strength: document.querySelector('[data-protein="strength"]'),
+const stepsEl = document.getElementById('steps');
+const workoutEl = document.getElementById('workout');
+
+const proteinsEls = {
+  inactive: document.querySelector('[data-proteins="inactive"]'),
+  cardio: document.querySelector('[data-proteins="cardio"]'),
+  strength: document.querySelector('[data-proteins="strength"]'),
 };
 
-const parameters = {};
+const caloriesEls = {
+  inactive: document.querySelector('[data-calories="inactive"]'),
+  workout: document.querySelectorAll('[data-calories="workout"]')
+}
+
+const weightLossEls = {
+  inactive: document.querySelector('[data-weight-loss="inactive"]'),
+  workout: document.querySelectorAll('[data-weight-loss="workout"]')
+}
+
 const proteinRatio = {
   inactive: 2.75,
   cardio: 3.3,
   strength: 4.4,
 };
 
+const parameters = {};
+
+// FUNCTIONS
+
 const getLbm = (params) => {
   const { weight, fat } = params;
-  const lbm = weight - (fat * weight / 100);
-  parameters.lbm = lbm.toFixed(1);
+  const lbm = (weight - (fat * weight / 100)).toFixed(1);
+  const lbmNum = Number(lbm);
+  parameters.lbm = lbmNum === Math.trunc(lbmNum) ? Math.trunc(lbmNum) : lbmNum;
 };
 
-const getProtein = (params, ratio) => {
+const getProteins = (params, ratio, elements) => {
   const { lbm } = params;
   params.protein = {
     inactive: Math.ceil(lbm * ratio['inactive']),
@@ -28,24 +45,60 @@ const getProtein = (params, ratio) => {
   }
 
   for (const key in params.protein) {
-    proteinEls[key].textContent = params.protein[key];
+    elements[key].textContent = params.protein[key];
+  }
+};
+
+const getCalories = (params, caloriesElements, weightLossElements) => {
+  const { weight, lbm, steps, workout } = params;
+
+  const bmr = 370 + (21.6 * lbm);
+  const tef = bmr * 0.15;
+  const caloriesPerSteps = steps * 0.025;
+  const neat = bmr + tef + caloriesPerSteps;
+  const caloriesPerWorkout = workout * weight * 0.05;
+
+  params.calories = {
+    inactive: Math.round(neat),
+    workout: Math.round(neat + caloriesPerWorkout),
+  };
+
+  for (const key in params.calories) {
+    if (key === 'workout') {
+      caloriesElements[key].forEach((el) => el.textContent = params.calories[key]);
+    } else {
+      caloriesElements[key].textContent = params.calories[key];
+    }
   }
 
-  // proteinEls.inactive.textContent = params.protein.inactive;
-  // proteinEls.cardio.textContent = params.protein.cardio;
-};
+  params.caloriesLoss = {
+    inactive: Math.round(neat * 0.8),
+    workout: Math.round((neat + caloriesPerWorkout) * 0.8),
+  };
+  
+  for (const key in params.calories) {
+    if (key === 'workout') {
+      weightLossElements[key].forEach((el) => el.textContent = params.caloriesLoss[key]);
+    } else {
+      weightLossElements[key].textContent = params.caloriesLoss[key];
+    }
+  }
+}
+
+// EVENT SUBMIT
 
 formEl.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
 
-  parameters.weight = formData.get('weight');
-  parameters.fat = formData.get('fat');
+  for (const key of formData.keys()) {
+    parameters[key] = Number(formData.get(key)) || 0;
+  }
 
   getLbm(parameters);
   lbmEl.innerText = `${parameters.lbm} кг`;
 
-  getProtein(parameters, proteinRatio);
+  getProteins(parameters, proteinRatio, proteinsEls);
 
-  console.log(parameters);
+  getCalories(parameters, caloriesEls, weightLossEls);
 });

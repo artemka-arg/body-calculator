@@ -15,14 +15,28 @@
         <input id="weight" name="weight" class="input" type="number" step="any" placeholder="">
         <div class="cut cut-short"></div>
         <label for="weight" class="placeholder">Ваш вес</label>
+        <span class="unit">кг</span>
       </div>
       <div class="input-container">
         <input id="fat" name="fat" class="input" type="number" step="any" placeholder="">
         <div class="cut"></div>
         <label for="fat" class="placeholder">Процент жира</label>
+        <span class="unit">%</span>
+      </div>
+      <div class="input-container">
+        <input id="steps" name="steps" class="input" type="number" placeholder="">
+        <div class="cut cut-long"></div>
+        <label for="steps" class="placeholder">Количество шагов</label>
+        <span class="unit">шагов</span>
+      </div>
+      <div class="input-container">
+        <input id="workout" name="workout" class="input" type="number" placeholder="">
+        <div class="cut cut-long"></div>
+        <label for="workout" class="placeholder">Время тренировки</label>
+        <span class="unit">мин</span>
       </div>
       <button type="text" class="submit">submit</button>
-      <h3 class="mb-0">Обезжиренная масса тела: <span id="lbm"></span></h3>
+      <h3 class="mb-0">LBM: <span id="lbm"></span></h3>
     </form>
   </section>
 
@@ -30,24 +44,27 @@
     <h2 class="span-all">Тренировки</h2>
 
     <input checked id="inactive" name="tab" type="radio" value="inactive">
-    <label for="inactive" class="tab-name">Неактивный</label>
+    <label for="inactive" class="tab-name">Нет</label>
     <input id="cardio" name="tab" type="radio" value="cardio">
     <label for="cardio" class="tab-name">Кардио</label>
     <input id="strength" name="tab" type="radio" value="strength">
     <label for="strength" class="tab-name">Силовые</label>
 
-    <!-- <a href="#"  data-tab="inactive" focuses>Неактивный</a>
-    <a href="#" class="tab-name" data-tab="cardio">Кардио</a>
-    <a href="#" class="tab-name" data-tab="strength">Силовые</a> -->
     <div class="tabs-content">
       <div class="tabs-content-item" data-tab-content="inactive">
-        <p>Белки: <span data-protein="inactive"></span></p>
+        <p class="mb-10">Белки: <span data-proteins="inactive">. . .</span> г</p>
+        <p class="mb-10">Калории (норма): <span data-calories="inactive">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="inactive">. . .</span> ккал</p>
       </div>
       <div class="tabs-content-item" data-tab-content="cardio">
-        <p>Белки: <span data-protein="cardio"></span></p>
+        <p class="mb-10">Белки: <span data-proteins="cardio">. . .</span> г</p>
+        <p class="mb-10">Калории (норма): <span data-calories="workout">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="workout">. . .</span> ккал</p>
       </div>
       <div class="tabs-content-item" data-tab-content="strength">
-        <p>Белки: <span data-protein="strength"></span></p>
+        <p class="mb-10">Белки: <span data-proteins="strength">. . .</span> г</p>
+        <p class="mb-10">Калории (норма): <span data-calories="workout">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="workout">. . .</span> ккал</p>
       </div>
     </div>
   </section>

@@ -44,28 +44,56 @@
   <section class="tabs">
     <h2 class="span-all">Тренировки</h2>
 
-    <input checked id="inactive" name="tab" type="radio" value="inactive">
+    <input checked id="inactive" name="workout" type="radio" value="inactive" class="tab-input">
     <label for="inactive" class="tab-name">Нет</label>
-    <input id="cardio" name="tab" type="radio" value="cardio">
+    <input id="cardio" name="workout" type="radio" value="cardio" class="tab-input">
     <label for="cardio" class="tab-name">Кардио</label>
-    <input id="strength" name="tab" type="radio" value="strength">
+    <input id="strength" name="workout" type="radio" value="strength" class="tab-input">
     <label for="strength" class="tab-name">Силовые</label>
 
     <div class="tabs-content">
       <div class="tabs-content-item" data-tab-content="inactive">
         <p class="mb-10">Белки: <span data-proteins="inactive">. . .</span> г</p>
-        <p class="mb-10">Калории (норма): <span data-calories="inactive">. . .</span> ккал</p>
-        <p>Для похудения: <span data-weight-loss="inactive">. . .</span> ккал</p>
+        <p class="mb-10">Калории (норма): <span data-calories="inactive" class="yellow">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="inactive" class="green">. . .</span> ккал</p>
       </div>
       <div class="tabs-content-item" data-tab-content="cardio">
         <p class="mb-10">Белки: <span data-proteins="cardio">. . .</span> г</p>
-        <p class="mb-10">Калории (норма): <span data-calories="workout">. . .</span> ккал</p>
-        <p>Для похудения: <span data-weight-loss="workout">. . .</span> ккал</p>
+        <p class="mb-10">Калории (норма): <span data-calories="workout" class="yellow">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="workout" class="green">. . .</span> ккал</p>
       </div>
       <div class="tabs-content-item" data-tab-content="strength">
         <p class="mb-10">Белки: <span data-proteins="strength">. . .</span> г</p>
-        <p class="mb-10">Калории (норма): <span data-calories="workout">. . .</span> ккал</p>
-        <p>Для похудения: <span data-weight-loss="workout">. . .</span> ккал</p>
+        <p class="mb-10">Калории (норма): <span data-calories="workout" class="yellow">. . .</span> ккал</p>
+        <p>Для похудения: <span data-weight-loss="workout" class="green">. . .</span> ккал</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="refeed">
+    <h2 class="span-all">Рефид</h2>
+
+    <input checked id="refeed-1" name="day" type="radio" value="first" class="tab-input">
+    <label for="refeed-1" class="tab-name">1 день</label>
+    <input id="refeed-2" name="day" type="radio" value="second" class="tab-input">
+    <label for="refeed-2" class="tab-name">2 день</label>
+    <input id="refeed-3" name="day" type="radio" value="firthd" class="tab-input">
+    <label for="refeed-3" class="tab-name">3 день</label>
+
+    <div class="tabs-content">
+      <div class="tabs-content-item" data-tab-content="refeed-1">
+        <p class="mb-10"><span data-refeed="1" class="yellow">. . .</span> г углеводов</p>
+      </div>
+      <div class="tabs-content-item" data-tab-content="refeed-2">
+        <p class="mb-10"><span data-refeed="2" class="yellow">. . .</span> г углеводов</p>
+      </div>
+      <div class="tabs-content-item" data-tab-content="refeed-3">
+        <p class="mb-10"><span data-refeed="3" class="yellow">. . .</span> г углеводов</p>
+      </div>
+      <div class="refeed-description">
+        <p class="mb-10"><strong>Рефид</strong> – употребление большого количества углеводов за короткий промежуток времени с целью восполнить запасы гликогена.</p>
+        <p class="mb-10">Каждые <b class="yellow">11 дней</b> нужно делать <b>2-3 дня</b> рефида.</p>
+        <p>Потреблять нужно как можно меньше жиров: <b>до 50 г</b>.</p>
       </div>
     </div>
   </section>

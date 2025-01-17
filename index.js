@@ -19,11 +19,23 @@ const weightLossEls = {
   workout: document.querySelectorAll('[data-weight-loss="workout"]')
 }
 
+const refeedEls = {
+  1: document.querySelector('[data-refeed="1"'),
+  2: document.querySelector('[data-refeed="2"'),
+  3: document.querySelector('[data-refeed="3"'),
+}
+
 const proteinRatio = {
   inactive: 2.75,
   cardio: 3.3,
   strength: 4.4,
 };
+
+const refeedRatio = {
+  1: 15,
+  2: 7.5,
+  3: 3.75,
+}
 
 const parameters = {};
 
@@ -72,7 +84,7 @@ const getCalories = (params, caloriesElements, weightLossElements) => {
   }
 
   params.caloriesLoss = {
-    inactive: Math.round(neat * 0.8),
+    inactive: Math.round(neat * 0.75),
     workout: Math.round((neat + caloriesPerWorkout) * 0.8),
   };
   
@@ -82,6 +94,17 @@ const getCalories = (params, caloriesElements, weightLossElements) => {
     } else {
       weightLossElements[key].textContent = params.caloriesLoss[key];
     }
+  }
+}
+
+const getRefeed = (params, elements) => {
+  const { lbm } = params;
+  params.refeed = {};
+
+  for (const key in elements) {
+    params.refeed[key] = Math.round(lbm * refeedRatio[key]);
+    elements[key].textContent = params.refeed[key];
+    console.log(lbm * refeedRatio[key]);
   }
 }
 
@@ -101,4 +124,6 @@ formEl.addEventListener('submit', (event) => {
   getProteins(parameters, proteinRatio, proteinsEls);
 
   getCalories(parameters, caloriesEls, weightLossEls);
+
+  getRefeed(parameters, refeedEls);
 });
